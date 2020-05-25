@@ -528,8 +528,7 @@
                                     </label>
                                 </div>
                                 <div class="order__form-row">
-                                    <input class="order__form-button" name="" type="button" value="Заказать Ajaxom"
-                                           onclick="ajaxorder();">
+                                    <input class="order__form-button" name="" type="submit" value="Заказать">
                                     <input class="order__form-button order__form-button_reset" name="" type="reset"
                                            value="Очистить">
                                 </div>
@@ -636,15 +635,15 @@
 <script src="./js/main.min.js"></script>
 </body>
 </html>
-<script>
-    function ajaxorder() {
-        $.ajax({
-            url: 'order.php',
-            type: 'post',
-            data: $('#order-form').serialize(),
-            success: function (response) {
-                console.log(response.result);
-            }
-        });
-    }
-</script>
+<!--<script>-->
+<!--    function ajaxorder() {-->
+<!--        $.ajax({-->
+<!--            url: 'order.php',-->
+<!--            type: 'post',-->
+<!--            data: $('#order-form').serialize(),-->
+<!--            success: function (response) {-->
+<!--                console.log(response.result);-->
+<!--            }-->
+<!--        });-->
+<!--    }-->
+<!--</script>-->

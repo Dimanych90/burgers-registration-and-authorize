@@ -46,13 +46,15 @@ $do = $queryorder->fetchAll(PDO::FETCH_ASSOC);
 
 if (empty($do)) {
     $queryorder = $pdo->prepare("INSERT INTO address(`street`,`home`,`part`,`appt`,`floor`,`comment`, `change`,`payment`,`callback`)
-VALUES('$street', '$home', '$part', '$appt','$floor','$comment','$change','$payment','$callback') ");
-    $queryorder->execute();
-    echo '<br> спасибо за ваш заказ, он будет доставлен по адресу '. $street . ' '. $home . ' '. $part. ' '. $appt.
-        ' '. $floor ;
+VALUES(:street, :home, :part, :appt, :floor, :comment, :change, :payment, :callback) ");
+    $queryorder->execute([':street' => $street, ':home' => $home, ':part' => $part, ':floor' => $floor,
+        ':appt' => $appt, ':comment' => $comment, ':change' => $change,
+        ':payment' => $payment, ':callback' => $callback]);
+    echo '<br> спасибо за ваш заказ, он будет доставлен по адресу '. $street . ' дом '. $home . ' корпус '. $part. ' этаж '. $floor.
+        ' квартира '. $appt ;
 } elseif (!empty($do)){
-    echo 'Спасибо что снова с нами Ваш заказ будет по указанному адресу'. ' ' . $street . ' '. ' дом '.$home . ' '. $part. ' '. $appt.
-        ' '. $floor;
+    echo 'Спасибо что снова с нами Ваш заказ будет по указанному адресу'. ' ' . $street . ' '. ' дом '.$home . ' корпус '. $part. ' этаж '. $floor .
+        ' квартира '. $appt;
 }
 else {
     echo $queryorder->errorInfo();
